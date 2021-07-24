@@ -44,7 +44,7 @@ export class UsersService {
       }),
       // "catchError" instead "catch"
       catchError(error => {
-        return Observable.throw('Something went wrong ;)'+error);
+        return throwError(error.message || 'Server Error') ;
       })
     );
   }

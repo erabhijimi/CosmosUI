@@ -1,4 +1,4 @@
-<div *ngIf='!submited'class="wrapper fadeInDown">
+<div class="wrapper fadeInDown" *ngIf="togglePage">
     <div id="formContent">
       <!-- Tabs Titles -->
     
@@ -17,6 +17,10 @@
   
     </div>
   </div>
-  <div *ngIf='submited'>
-    {{msg}}<a class="underlineHover" href="loginpage">Wrong Credentials,Go to login page</a>
+
+  <div class="wrapper fadeInDown" *ngIf="!togglePage">
+    <h3>Wrong Credentials / Try again</h3>
+    <form (ngSubmit)="goToLoginPage()">
+      <input type="submit" class="fadeIn fourth" value="Go To Login Page">
+    </form>
   </div>
