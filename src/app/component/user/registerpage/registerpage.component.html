@@ -1,4 +1,4 @@
-<div class="wrapper fadeInDown">
+<div class="wrapper fadeInDown" *ngIf="!togglePage">
     <div id="formContent">
     <h3>Registration Form: </h3>
       <form (ngSubmit)="onRegisterUser()">
@@ -8,3 +8,18 @@
       </form>
     </div>
   </div>
+  <div class="wrapper fadeInDown" *ngIf= "togglePage">
+    <div id="formContent">
+    <h3>Registered Successfully. </h3>
+      <form (ngSubmit)="successfullyRegisteredUser()">
+        <input type="submit" class="fadeIn fourth" value="Go To Login Page">
+      </form>
+    </div>
+  </div>
+  <div class="wrapper fadeInDown" *ngIf="showErrorPage">
+    <h3>Use different Mobile Number / Try later</h3>
+    <form (ngSubmit)="onLoginUser()">
+      <input type="submit" class="fadeIn fourth" value="Go To Login Page">
+    </form>
+  </div>
+  

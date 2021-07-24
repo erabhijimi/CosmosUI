@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/service/users.service';
 import { RegisterUser } from 'src/app/model/RegisterUser';
 import { Router } from '@angular/router';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-registerpage',
@@ -9,29 +10,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./registerpage.component.css']
 })
 export class RegisterpageComponent implements OnInit {
-
+  errorMsg:String;
   user=new RegisterUser();
+  togglePage:boolean=false;
+  showErrorPage=false;
   constructor(private usersService:UsersService, private routes:Router) { }
 
   ngOnInit(): void {
   }
+  successfullyRegisteredUser(){
+    this.routes.navigate(['/loginpage']);
+  }
+  onLoginUser(){
+    this.showErrorPage=false;
+    this.routes.navigate(['/loginpage']);
+  }
   onRegisterUser(){
-    const myObserver = {
-      next: x => console.log('Observer got a next value: ' + x),
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
+    this.showErrorPage=false;
     this.usersService.saveRegisterUser(this.user)
-    .subscribe(myObserver);
-    if(myObserver.next){
-      this.routes.navigate(['/loginpage']);
+    .subscribe((data)=>{
+      console.log("Saved successfully "+data);
+      this.togglePage=true;
+    },(error)=>{
+      console.log("Some issue"+error);
+      this.errorMsg=error;
+      this.showErrorPage=true;
     }
-    else if(myObserver.error){
-      console.log('Registration Failed. Try again..');
-    }
-    else{
-      console.log('Registration Failed. Try again.. one more time');
-    }
+    );
       
   }
 

@@ -8,7 +8,7 @@ import { CartService } from './cart.service';
 import { UsersList } from '../model/UserList';
 import { JWTResponse } from '../model/JWTResponse';
 import { catchError ,map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +52,17 @@ export class UsersService {
     throw new Error("Method not implemented.");
   }
   public saveRegisterUser(user:RegisterUser){
-    return this.httpClient.post(`${baseUrl}user/register`,user ,{  responseType: 'text' });
+    return this.httpClient.post<string>(`${baseUrl}user/register`,user )
+    .pipe(
+      // eg. "map" without a dot before
+      map(data => {
+        return data;
+      }),
+      // "catchError" instead "catch"
+      catchError(error => {
+          return throwError(error.message || 'Server Error') ;
+      })
+    );
   }
   public getUser(moblieNumber){
     return this.httpClient.get<Users>(`${baseUrl}contact/`+moblieNumber);
