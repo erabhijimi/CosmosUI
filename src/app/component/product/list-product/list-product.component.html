@@ -10,12 +10,11 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">MRP Price</th>
-        <th scope="col">I am buying at</th>
-        <th scope="col">Selling Price</th>
         <th scope="col">Clone</th>
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
-        <th scope="col">Photo</th>
+        <th scope="col">Add Photo</th>
+        <th scope="col">Add Purchase</th>
       </tr>
     </thead>
     <tbody>
@@ -23,12 +22,11 @@
         <td>{{row.productId}}</td>
         <td>{{row.productName}}</td>
         <td>{{row.productMRP}}</td>
-        <td>{{row.productRealPrice}}</td>
-        <td>{{row.productSellingPrice}}</td>
         <td><button type="click" class="btn btn-primary btn-sm" (click)="onClone(row)">Clone</button></td>
         <td><button type="button" class="btn btn-secondary btn-sm" (click)="onUpdate(row)">Update</button></td>
         <td><button type="button" class="btn btn-danger btn-sm" (click)="onDelete(row)">Delete</button></td>
-        <td><button type="button" class="btn btn-secondary btn-sm" (click)="onUploadPhoto(row)">Upload Photo</button></td>
+        <td><button type="button" class="btn btn-secondary btn-sm" (click)="onUploadPhoto(row)">Upload Photos</button></td>
+        <td><button type="button" class="btn btn-secondary btn-sm" (click)="onAddPurchase(row)">Add Purchase</button></td>
       </tr>
     </tbody>
   </table>

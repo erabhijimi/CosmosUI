@@ -34,5 +34,8 @@ export class ListProductComponent implements OnInit {
   onUploadPhoto(product){
     this.router.navigate(['/uploadphoto',product.productId])
   }
+  onAddPurchase(product){
+    this.router.navigate(['/addToInventory',product.productId])
+  }
 
 }
