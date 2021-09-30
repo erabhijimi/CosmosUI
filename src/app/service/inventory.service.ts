@@ -14,6 +14,7 @@ export class InventoryService {
   constructor(private httpClient: HttpClient) { }
   //Save a Single Product In inventory
   public saveProductToInventory(inventory:Inventory){
+    console.log(inventory);
     return this.httpClient.post<Inventory>(this.inventoryUrl,inventory);
   }
   public GetInventoryList() {

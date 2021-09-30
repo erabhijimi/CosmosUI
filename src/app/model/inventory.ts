@@ -4,8 +4,9 @@ export class Inventory {
     public productId: number;
     public product:Product;
     public quantityOfProduct: number;
-    public bestBeforeDays: number;
+    public bestBeforeDays: string;
     public comments: string;
-    public addedDate:string;
+    public mfgDate:Date;
+    public purchaseDate:Date;
     constructor() {}
 }
