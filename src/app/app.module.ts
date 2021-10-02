@@ -42,6 +42,7 @@ import { ViewInventoryComponent } from './component/inventory/view-inventory.com
 import { ShowOrdersComponent } from './component/show-orders/show-orders.component';
 import { ViewAdminOrdersComponent } from './component/view-admin-orders/view-admin-orders.component';
 import { AdminLteComponent } from './component/admin-lte/admin-lte.component';
+import { AddSaleComponent } from './component/add-sale/add-sale.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { AdminLteComponent } from './component/admin-lte/admin-lte.component';
     ShowOrdersComponent,
     ViewAdminOrdersComponent,
     AdminLteComponent,
+    AddSaleComponent,
   ],
   imports: [
     BrowserModule,

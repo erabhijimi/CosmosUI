@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
 
   categoryList=['Packet','Loose'];
-  typeList=['Dali','Masala','Atta','Ditergent','Tooth Paste'];
-  unitList=['Kg','gm',];
-  storeList=['MyStore','Suman Traders','Bishnu Marwadi','Cosmetic Store','Others'];
+  typeList=['Dali','Masala','Atta','Ditergent','Tooth Paste','Other'];
+  unitList=['Kg','gm','ltr'];
+  storeList=['MyStore','Others'];
   product= new Product();
   constructor(private productService: ProductService,private routes:Router) { }
 

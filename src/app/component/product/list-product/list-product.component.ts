@@ -22,6 +22,9 @@ export class ListProductComponent implements OnInit {
       this.products=data.products;
     });
   }
+  onAddProduct(){
+    this.router.navigate(['/vaddproduct'])
+  }
   onClone(product){
     this.router.navigate(['/vcloneproduct',product.productId])
   }
