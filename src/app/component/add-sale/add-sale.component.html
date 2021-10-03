@@ -11,36 +11,38 @@
                 <input formControlName ="saleDate" type="date" class="form-control">
             </div>
         </div>
-        <button class="btn btn-secondary" type="button">Fetch Details</button>
-        
-        <div formGroupName="custAddress">
-            <div class="form-row"> 
-                <div class="form-group">
-                    <label>Customer Name:</label>
-                    <input formControlName ="custName" type="text" class="form-control">
+        <button class="btn btn-secondary" type="button" (click)="getCustDetails()">Fetch Details</button>
+        <div *ngIf="showCustDetails">
+            <div formGroupName="custAddress">
+                <div class="form-row"> 
+                    <div class="form-group">
+                        <label>Customer Name:</label>
+                        <input formControlName ="custName" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input formControlName ="custAddressLine1" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Landmark:</label>
+                        <input formControlName ="landmark" type="text" class="form-control">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>City:</label>
+                        <input formControlName ="city" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>State:</label>
+                        <input formControlName ="state" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode:</label>
+                        <input formControlName ="pincode" type="number" class="form-control">
+                    </div> -->
                 </div>
-                <div class="form-group">
-                    <label>Address:</label>
-                    <input formControlName ="custAddressLine1" type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Landmark:</label>
-                    <input formControlName ="landmark" type="text" class="form-control">
-                </div>
-                <!-- <div class="form-group">
-                    <label>City:</label>
-                    <input formControlName ="city" type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>State:</label>
-                    <input formControlName ="state" type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Pincode:</label>
-                    <input formControlName ="pincode" type="number" class="form-control">
-                </div> -->
             </div>
-        </div>        
+        </div>
+                
         <div formArrayName="items" *ngFor="let item of items.controls; let i=index">
             <div [formGroupName]="i">
                 <div class="form-row">
@@ -72,7 +74,7 @@
             </div>      
         </div>
         <button class="btn btn-secondary" type="button" (click)="addAlternateItems()">Add Item</button>       
-        <button class="btn btn-primary" type="submit">Add Sale</button>
+        <button class="btn btn-primary" type="submit">Confirm Sale</button>
     </form>
 </div>
 {{addSaleForm.value | json}}

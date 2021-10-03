@@ -43,6 +43,8 @@ import { ShowOrdersComponent } from './component/show-orders/show-orders.compone
 import { ViewAdminOrdersComponent } from './component/view-admin-orders/view-admin-orders.component';
 import { AdminLteComponent } from './component/admin-lte/admin-lte.component';
 import { AddSaleComponent } from './component/add-sale/add-sale.component';
+import { AddPurchaseComponent } from './component/add-purchase/add-purchase.component';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,7 @@ import { AddSaleComponent } from './component/add-sale/add-sale.component';
     ViewAdminOrdersComponent,
     AdminLteComponent,
     AddSaleComponent,
+    AddPurchaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,8 @@ import { AddSaleComponent } from './component/add-sale/add-sale.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    Ng2SearchPipeModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

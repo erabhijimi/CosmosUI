@@ -8,6 +8,10 @@ import { FormBuilder ,FormGroup ,FormControl,FormArray } from '@angular/forms';
 })
 export class AddSaleComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
+  showCustDetails:boolean=false;
+  get custId(){
+    return this.addSaleForm.get('custId');
+  } 
   get items(){
     return this.addSaleForm.get('items') as FormArray;
   }
@@ -53,4 +57,8 @@ export class AddSaleComponent implements OnInit {
   } 
   */
 
+  getCustDetails(){
+    this.showCustDetails=true;
+    console.log("Need to search this number "+this.custId.value);
+  }
 }

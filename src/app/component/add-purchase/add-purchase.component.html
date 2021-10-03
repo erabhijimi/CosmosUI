@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <h3>Add Purchase Page</h3>
+    <form [formGroup]="addPurchaseForm">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Mobile Number:</label>
+                <input formControlName ="custId" type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input formControlName ="saleDate" type="date" class="form-control">
+            </div>
+        </div>
+        <button class="btn btn-secondary" type="button" (click)="getCustDetails()">Fetch Details</button>
+        <div *ngIf="showCustDetails">
+            <div formGroupName="custAddress">
+                <div class="form-row"> 
+                    <div class="form-group">
+                        <label>Distributor Name:</label>
+                        <input formControlName ="custName" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input formControlName ="custAddressLine1" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Landmark:</label>
+                        <input formControlName ="landmark" type="text" class="form-control">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>City:</label>
+                        <input formControlName ="city" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>State:</label>
+                        <input formControlName ="state" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode:</label>
+                        <input formControlName ="pincode" type="number" class="form-control">
+                    </div> -->
+                </div>
+            </div>
+        </div> 
+        <div formArrayName="items" *ngFor="let item of items.controls; let i=index">
+          <h5>Product#{{i+1}}</h5>
+            <div [formGroupName]="i">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="col-form-label">Product Name:</label>
+                        <input formControlName ="productName" type="text" class="form-control" (ngModelChange)="Search(productNameSearch)">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label"> Product Category :</label>
+                        <select class="form-control"  formControlName ="productCategory">
+                          <option *ngFor="let sub of categoryList" [value]="sub">{{sub}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label"> Product Type :</label>
+                        <select class="form-control"  formControlName ="productType">
+                          <option *ngFor="let sub of typeList" [value]="sub">{{sub}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Brand :</label>
+                        <div>
+                          <input type="text" class="form-control" formControlName ="productBrand">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="productUnit" class="col-form-label"> Unit :</label>
+                        <select class="form-control" formControlName ="productUnit">
+                          <option *ngFor="let sub of unitList" [value]="sub">{{sub}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <div>
+                          <label for="productAmount" class="col-form-label"> Size :</label>
+                          <input type="number" class="form-control" formControlName ="productAmount">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">MRP :</label>
+                        <div>
+                          <input type="number" class="form-control" formControlName ="productMRP" placeholder="MRP">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Real Price :</label>
+                        <div>
+                          <input type="number" class="form-control" formControlName ="productRealPrice" placeholder="Price I am getting at">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Selling Price :</label>
+                        <div>
+                          <input type="number" class="form-control" formControlName ="productSellingPrice" placeholder="Selling Price">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="quantityOfProduct" class="col-form-label"> Number of Pieces Brought :</label>
+                          <input type="number" class="form-control" formControlName ="quantityOfProduct" placeholder="0">
+                      </div>
+                      <div class="form-group">
+                        <label for="mfgDate" class="col-form-label"> MFG Date :</label>
+                        <input type="date" class="form-control" formControlName="mfgDate" value="{{'yyyy-MM-dd' }}" >
+                      </div>
+                      <div class="form-group mb-2">
+                        <label for="bestBeforeDays" class="col-form-label"> Best Before Days :</label>
+                        <select class="form-control"  formControlName="bestBeforeDays">
+                          <option *ngFor="let sub of expiaryList" [value]="sub">{{sub}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="comments" class="col-form-label">Additional Comments:</label>
+                          <input type="text" class="form-control" formControlName="comments">
+                      </div>
+                </div>
+            </div>      
+        </div>
+        <!-- {{productArray | json}}<br> -->
+        <button class="btn btn-secondary" type="button" (click)="addAlternateItems()">Add Product</button> <br><br>      
+        <button class="btn btn-primary" type="submit">Confirm Purchase</button>
+    </form>
+</div>
+{{addPurchaseForm.value | json}}
