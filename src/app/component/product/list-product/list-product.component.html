@@ -1,6 +1,9 @@
 <div>
   <button type="button" class="btn btn-danger btn-sm" (click)="onAddProduct()">Add Product</button>
 </div>
+<form>
+  <input type="text" class="form-control" name="productName" [(ngModel)]="productName" id="productName" placeholder="Enter productName to search" (ngModelChange)="Search()">         
+</form>
 <div class="example-button-row">
   <table class="table">
     <thead>
@@ -16,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor = "let row of products">
+      <tr *ngFor = "let row of productArray">
         <td>{{row.productId}}</td>
         <td>{{row.productName}}</td>
         <td>{{row.productMRP}}</td>

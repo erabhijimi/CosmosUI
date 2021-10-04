@@ -12,6 +12,8 @@ import { ProductService } from 'src/app/service/product.service';
 export class ListProductComponent implements OnInit {
 
   products:Array<Product> = [];
+  productArray:Product[];
+  productName:String;
   mobileNumber:number;
   constructor(private productService:ProductService, private router:Router,private cartService:CartService) { }
 
@@ -20,6 +22,7 @@ export class ListProductComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
       this.products=data.products;
+      this.productArray=data.products;
     });
   }
   onAddProduct(){
@@ -39,6 +42,16 @@ export class ListProductComponent implements OnInit {
   }
   onAddPurchase(product){
     this.router.navigate(['/addToInventory',product.productId])
+  }
+  Search(){
+    console.log("inside search()"+this.productName);
+    if(this.productName ==""){
+      this.ngOnInit();
+    }else{
+      return this.productArray = this.productArray.filter(res=>{
+        return res.productName.toLocaleLowerCase().match(this.productName.toLocaleLowerCase());
+      })
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/model/Product';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -10,7 +10,6 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class AddPurchaseComponent implements OnInit {
   constructor(private fb:FormBuilder,private productService:ProductService) { }
-  productNameSearch:String="";
   productArray:Product[];
   products:Array<Product> = [];
   showCustDetails:boolean=false;
@@ -28,11 +27,11 @@ export class AddPurchaseComponent implements OnInit {
     this.items.push(this.addItemDetails());
   }
   addPurchaseForm = this.fb.group({
-    custId:[''],
+    custId:['',[Validators.minLength(3),Validators.required]],
     custAddress: this.fb.group({
-      custName:[''],
-      custAddressLine1:[''],
-      landmark:['']
+      custName:['',Validators.required],
+      custAddressLine1:['',Validators.required],
+      landmark:['',Validators.required]
     }),
     saleDate:[''],
     items:this.fb.array([
@@ -41,7 +40,7 @@ export class AddPurchaseComponent implements OnInit {
   });
   addItemDetails(): FormGroup {
     return this.fb.group({
-      productName:[''],
+      productName:['',Validators.required],
       productCategory:[''],
       productType:[''],
       productBrand:[''],
@@ -68,14 +67,16 @@ export class AddPurchaseComponent implements OnInit {
     this.showCustDetails=true;
     console.log("Need to search this number "+this.custId.value);
   }
-  Search(productNameSearch){
-    if(this.productNameSearch ==""){
+  productNameList: String[];
+  Search(){
+    /* console.log("inside search()"+productNameSearch);
+    if(productNameSearch ==""){
       this.ngOnInit();
     }else{
       return this.productArray = this.productArray.filter(res=>{
-        return res.productName.toLocaleLowerCase().match(this.productNameSearch.toLocaleLowerCase());
+        return res.productName.toLocaleLowerCase().match(productNameSearch.toLocaleLowerCase());
       })
-    }
+    } */
   }
 
 }

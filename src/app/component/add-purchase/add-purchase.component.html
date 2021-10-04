@@ -4,7 +4,13 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Mobile Number:</label>
-                <input formControlName ="custId" type="number" class="form-control">
+                <input [class.is-invalid]="custId.invalid && custId.touched" formControlName ="custId" type="number" class="form-control">
+                <!-- <small [class.d-none]="custId.valid || custId.untouched" class="text-danger">Mobile number is required</small>
+                 -->
+                 <div *ngIf="custId.invalid && custId.touched">
+                   <small [hidden]="!custId.errors.required" class="text-danger">Mobile number is required for now</small>
+                   <small [hidden]="!custId.errors.minlength" class="text-danger">Not a Valid Moblie Number</small>
+                </div>
             </div>
             <div class="form-group">
                 <label>Date:</label>
@@ -48,7 +54,10 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="col-form-label">Product Name:</label>
-                        <input formControlName ="productName" type="text" class="form-control" (ngModelChange)="Search(productNameSearch)">
+                        <input formControlName ="productName" type="text" class="form-control" (ngModelChange)="Search()">
+                        <!-- <select class="form-control"  formControlName ="productName" (ngModelChange)="Search(productName)">
+                          <option *ngFor="let name of productNameList" [value]="name">{{name}}</option>
+                        </select> -->
                     </div>
                     <div class="form-group">
                         <label class="col-form-label"> Product Category :</label>
@@ -120,8 +129,8 @@
             </div>      
         </div>
         <!-- {{productArray | json}}<br> -->
-        <button class="btn btn-secondary" type="button" (click)="addAlternateItems()">Add Product</button> <br><br>      
-        <button class="btn btn-primary" type="submit">Confirm Purchase</button>
+        <button class="btn btn-secondary" type="button" (click)="addAlternateItems()" [disabled]="items.invalid">Add Product</button> <br><br>      
+        <button class="btn btn-primary" type="submit" [disabled]="items.invalid">Confirm Purchase</button>
     </form>
 </div>
 {{addPurchaseForm.value | json}}
