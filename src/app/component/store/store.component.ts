@@ -16,13 +16,15 @@ export class StoreComponent implements OnInit {
   cartList:Array<Item> =[];
   products:Array<Product> = [];
   showButton:boolean=true;
+  productArray:Product[];
+  productName:String;
   constructor(private storeService:StoreService, private cartService:CartService,private productService:ProductService) { }
 
   ngOnInit(): void {
     this.storeService.getAllStoreProducts()
     .subscribe(data => {
       console.log(data);
-      this.products=data.products;
+      this.productArray=data.products;
     });
   }
   onAddToCart(product){
@@ -35,6 +37,16 @@ export class StoreComponent implements OnInit {
     this.userCart.items=this.cartService.getCartList();
     console.log(this.userCart);
     this.cartService.onSaveCart(this.userCart);
+  }
+  Search(){
+    console.log("inside search()"+this.productName);
+    if(this.productName ==""){
+      this.ngOnInit();
+    }else{
+      return this.productArray = this.productArray.filter(res=>{
+        return res.productName.toLocaleLowerCase().match(this.productName.toLocaleLowerCase());
+      })
+    }
   }
 
 }

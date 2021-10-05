@@ -1,34 +1,72 @@
 <div>
-    <form (ngSubmit)="onSubmitProductToInventory()">
+  <form [formGroup]="addPurchaseForm" (ngSubmit)="onSubmitProductToInventory()">
+    <h5>Distributor Details :</h5>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Mobile Number:</label>
+                <input formControlName ="custId" type="number" class="form-control">
+            </div>
+        </div>
+        <button class="btn btn-secondary" type="button" (click)="getCustDetails()">Fetch Details</button> 
+        <div *ngIf="showCustDetails">
+            <div formGroupName="custAddress">
+              <div>
+                <div class="form-row"> 
+                  <div class="form-group">
+                      <label>Distributor Name:</label>
+                      <input formControlName ="custName" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Address:</label>
+                      <input formControlName ="custAddressLine1" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Landmark:</label>
+                      <input formControlName ="landmark" type="text" class="form-control">
+                  </div>
+                  <!-- <div class="form-group">
+                      <label>City:</label>
+                      <input formControlName ="city" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>State:</label>
+                      <input formControlName ="state" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Pincode:</label>
+                      <input formControlName ="pincode" type="number" class="form-control">
+                  </div> -->
+              </div>
+              </div>
+            </div>
+        </div> 
+        <br>
+
       <div class="form-row">
-            <div class="form-group">
-              <label for="quantityOfProduct" class="col-form-label"> Number of Pieces Brought :</label>
-                <input type="number" class="form-control" name="inventory.quantityOfProduct" [(ngModel)]="inventory.quantityOfProduct" id="quantityOfProduct" placeholder="0">
-            </div>
-            <div class="form-group">
-              <label for="mfgDate" class="col-form-label"> MFG Date :</label>
-              <input type="date" class="form-control" name="inventory.mfgDate" [(ngModel)]="inventory.mfgDate" value="{{'yyyy-MM-dd' }}" >
-            </div>
-            <div class="form-group mb-2">
-              <label for="bestBeforeDays" class="col-form-label"> Best Before Days :</label>
-              <select class="form-control"  name="inventory.bestBeforeDays" [(ngModel)]="inventory.bestBeforeDays" id="bestBeforeDays">
-                <option *ngFor="let sub of expiaryList" [value]="sub">{{sub}}</option>
-              </select>
-            </div>              
+        <div class="form-group">
+          <label for="quantityOfProduct" class="col-form-label"> Number of Pieces Brought :</label>
+            <input type="number" class="form-control" formControlName ="quantityOfProduct" placeholder="0">
         </div>
-        
-        <div>
-            <div class="form-group">
-              <label for="comments" class="col-form-label">Additional Comments:</label>
-                <input type="text" class="form-control" name="inventory.comments" [(ngModel)]="inventory.comments" id="comments">
-            </div>
+        <div class="form-group">
+          <label for="mfgDate" class="col-form-label"> MFG Date :</label>
+          <input type="date" class="form-control" formControlName="mfgDate" value="{{'yyyy-MM-dd' }}" >
         </div>
+        <div class="form-group mb-2">
+          <label for="bestBeforeDays" class="col-form-label"> Best Before Days :</label>
+          <select class="form-control"  formControlName="bestBeforeDays">
+            <option *ngFor="let sub of expiaryList" [value]="sub">{{sub}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comments" class="col-form-label">Additional Comments:</label>
+            <input type="text" class="form-control" formControlName="comments">
+        </div>
+      </div>
           <div class="form-group row">
             <div>
               <button type="submit" class="btn btn-primary">Add To Inventory</button>
             </div>
           </div>
 
-    </form>
-
+  </form>
 </div>

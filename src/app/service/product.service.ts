@@ -12,6 +12,7 @@ import { baseUrl } from 'src/environments/environment';
 export class ProductService {
 
   productUrl:string=`${baseUrl}/product/`;
+  quickproductUrl:string=`${baseUrl}/quick/product/`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,6 +32,10 @@ export class ProductService {
   //Save a Single Product
   public saveProduct(product:Product){
     return this.httpClient.post<Product>(this.productUrl,product);
+  }
+  //Save a Single Product quickly
+  public saveQuickProduct(product:Product){
+    return this.httpClient.post<Product>(this.quickproductUrl,product);
   }
   //Update a Single Product
   public updateProduct(product:Product){
