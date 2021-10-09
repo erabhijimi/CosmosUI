@@ -20,6 +20,9 @@ export class AddProductComponent implements OnInit {
   get custId(){
     return this.addPurchaseForm.get('custId');
   }
+  get custAddress(){
+    return this.addPurchaseForm.get('custAddress');
+  }
 
   addPurchaseForm = this.fb.group({
     custId:['',Validators.compose([Validators.minLength(10)])],
@@ -64,6 +67,16 @@ export class AddProductComponent implements OnInit {
       });
   }
   getCustDetails(){
+    console.log("Calling the Address for this user:"+this.custId.value);
+    this.productService.getCustDetails(this.custId.value)
+    .subscribe(data => {
+      this.custAddress.patchValue({
+        custName:data.custName,
+      custAddressLine1:data.custAddressLine1,
+      landmark:data.landmark
+      })
+      console.log("Saved successfully"+data);
+      });
     this.showCustDetails=true;
 
   }

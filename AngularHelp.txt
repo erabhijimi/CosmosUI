@@ -1,0 +1,4 @@
+download and install node js
+install		npm install -g @angular/cli
+ng -- version
+npm update

@@ -5,17 +5,24 @@ import { Item } from '../model/Item';
 import { Products } from '../model/Products';
 import { Photo } from '../model/Photo';
 import { baseUrl } from 'src/environments/environment';
+import { AbstractControl } from '@angular/forms';
+import { Address } from 'cluster';
+import { CustAddress } from '../model/CustAddress';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
+  
   productUrl:string=`${baseUrl}/product/`;
+  addressUrl:string=`${baseUrl}/address/`;
   quickproductUrl:string=`${baseUrl}/quick/product/`;
 
   constructor(private httpClient: HttpClient) { }
-
+  //Fetch Address for Mobile Number
+  getCustDetails(mobileNumber: number) {
+    return this.httpClient.get<CustAddress>(this.addressUrl+mobileNumber);
+  }
   
   //Get a Single Product
   public getProduct(productId){
