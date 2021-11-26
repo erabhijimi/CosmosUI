@@ -1,3 +1,5 @@
+import { Item } from "./Item";
+
 export class Product {
   public productId: number;
   public productName: string;
@@ -11,5 +13,7 @@ export class Product {
   public productRealPrice: number;
   public productSellingPrice: number;
   public active: boolean;
+  public productAddedToCart: boolean;
+  public item:Item;
   constructor() {  }
 }

@@ -135,6 +135,7 @@ export class CartService {
     let cart=new Item();
     cart.productId=product.productId;
     cart.quantityOfProduct=1;
+    cart.product=product;
     this.cartList.push(cart);
   }
 

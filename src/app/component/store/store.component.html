@@ -23,7 +23,16 @@
           <td>{{row.productName}}</td>
           <td>{{row.productMRP}}</td>
           <td>{{row.productSellingPrice}}</td>
-          <td ><button  type="click" class="btn btn-primary btn-sm" (click)="onAddToCart(row)">AddToCart</button></td>
+          <td >
+            <button  type="click" class="btn btn-primary btn-sm" (click)="onAddToCart(row)">
+              <div *ngIf="row.productAddedToCart">
+                Added To Cart
+              </div>
+              <div *ngIf="!row.productAddedToCart">
+                Add To Cart
+              </div>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

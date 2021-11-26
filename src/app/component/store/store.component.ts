@@ -27,7 +27,8 @@ export class StoreComponent implements OnInit {
       this.productArray=data.products;
     });
   }
-  onAddToCart(product){
+  onAddToCart(product:Product){
+    product.productAddedToCart=true;
     console.log(product);
     this.cartService.onAddToCart(product);
   }
