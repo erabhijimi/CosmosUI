@@ -10,7 +10,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">MRP Price</th>
           <th scope="col">Selling Price</th>
@@ -19,14 +18,13 @@
       </thead>
       <tbody>
         <tr *ngFor = "let row of productArray">
-          <td>{{row.productId}}</td>
           <td>{{row.productName}}</td>
           <td>{{row.productMRP}}</td>
           <td>{{row.productSellingPrice}}</td>
           <td >
             <button  type="click" class="btn btn-primary btn-sm" (click)="onAddToCart(row)">
               <div *ngIf="row.productAddedToCart">
-                Added To Cart
+                AddedToCart
               </div>
               <div *ngIf="!row.productAddedToCart">
                 Add To Cart

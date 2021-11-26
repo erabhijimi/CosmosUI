@@ -18,6 +18,7 @@ export class StoreComponent implements OnInit {
   showButton:boolean=true;
   productArray:Product[];
   productName:String;
+  notTouched:boolean=false;
   constructor(private storeService:StoreService, private cartService:CartService,private productService:ProductService) { }
 
   ngOnInit(): void {
@@ -49,5 +50,4 @@ export class StoreComponent implements OnInit {
       })
     }
   }
-
 }
