@@ -1,7 +1,7 @@
 export class UserAddress {
     public mobileNumber:number;
-    public name:string;
-    public address: string;
+    public custName:string;
+    public custAddressLine1: string;
     public landmark: string;
     public pincode:string;
     public alternateNumber:string;

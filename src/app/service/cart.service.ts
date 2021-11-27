@@ -25,10 +25,12 @@ export class CartService {
 
   //Get Address For Single User
   public getAddress(mobileNumber: number) {
+    console.log("Get details for "+ mobileNumber);
     return this.httpClient.get<UserAddress>(this.addressUrl+mobileNumber);
   }
   //Save Address for Single User
   public registerAddress(user: UserAddress) {
+    console.log("Save address for "+user);
     this.httpClient.post<UserAddress>(this.addressUrl,user)
     .subscribe(data => {
       console.log(data);
