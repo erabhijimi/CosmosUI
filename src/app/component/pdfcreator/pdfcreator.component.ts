@@ -82,10 +82,10 @@ export class PdfcreatorComponent implements OnInit {
           columns: [
             [
               {
-                text: 'Name :'+this.invoice.address.name,
+                text: 'Name :'+this.invoice.address.custName,
                 bold:true
               },
-              { text: 'Address :'+ this.invoice.address.address+" ,"+this.invoice.address.landmark },
+              { text: 'Address :'+ this.invoice.address.custAddressLine1+" ,"+this.invoice.address.landmark },
               { text: 'Mobile Number :'+this.invoice.contactNumber }
             ],
             [
